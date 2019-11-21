@@ -475,6 +475,7 @@ PRODUCT_PACKAGES += \
 
 # Shims
 PRODUCT_PACKAGES += \
+    libmms_hal_vstab_shim \
     libcutils_shim \
     libui_shim
 
