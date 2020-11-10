@@ -26,8 +26,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_m.mk)
 
 $(call inherit-product, vendor/oneplus/oneplus3/oneplus3-vendor.mk)
 
-$(call inherit-product, vendor/nitrogen/config/phone-xxhdpi-6144-dalvik-heap.mk)
-$(call inherit-product, vendor/nitrogen/config/phone-xxhdpi-2048-hwui-memory.mk)
+# Setup dalvik vm configs
+#$(call inherit-product, vendor/nitrogen/config/phone-xxhdpi-6144-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
+#$(call inherit-product, vendor/nitrogen/config/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -37,8 +39,20 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
+# Hardware
+PRODUCT_BOARD_PLATFORM := msm8996
+PRODUCT_USES_QCOM_HARDWARE := true
+
+# HALS
+#SRC_AUDIO_HAL_DIR := hardware/qcom-caf/msm8996/audio
+#SRC_DISPLAY_HAL_DIR := hardware/qcom-caf/msm8996/display
+#SRC_MEDIA_HAL_DIR := hardware/qcom-caf/msm8996/media
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += device/oneplus/oneplus3
+#PRODUCT_SOONG_NAMESPACES += \
+#    device/oneplus/oneplus3 \
+#    hardware/qcom-caf/msm8996
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -46,6 +60,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.pro.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.pro.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.bluetooth.xml \
+    frameworks/native/data/etc/android.hardware.camera.ar.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.ar.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
